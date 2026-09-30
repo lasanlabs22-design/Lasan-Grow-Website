@@ -1,15 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { SITE } from "@/lib/site";
 
 const NAV = [
-  ["Features", "#features"],
-  ["How it works", "#how-it-works"],
-  ["Security", "#security"],
-  ["FAQ", "#faq"],
+  ["Features", "/#features"],
+  ["How it works", "/#how-it-works"],
+  ["Security", "/#security"],
+  ["FAQ", "/#faq"],
 ];
 
 export function Header() {
@@ -30,15 +31,15 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <a href="#top" aria-label="Lasan Grow home" onClick={() => setOpen(false)}>
+        <Link href="/" aria-label="Lasan Grow home" onClick={() => setOpen(false)}>
           <Logo />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 text-[15px] text-muted md:flex" aria-label="Main">
           {NAV.map(([label, href]) => (
-            <a key={href} href={href} className="transition-colors hover:text-fg">
+            <Link key={href} href={href} className="transition-colors hover:text-fg">
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -46,12 +47,12 @@ export function Header() {
           <a href={SITE.signInUrl} className="rounded-md px-3.5 py-2 text-[15px] font-medium text-muted transition-colors hover:text-fg">
             Sign in
           </a>
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="rounded-md bg-brand-500 px-4 py-2 text-[15px] font-semibold text-white shadow-card transition-colors hover:bg-brand-600"
           >
             Book a free demo
-          </a>
+          </Link>
         </div>
 
         <button
@@ -69,18 +70,18 @@ export function Header() {
         <div className="border-t border-line bg-white px-4 pb-5 pt-2 md:hidden">
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map(([label, href]) => (
-              <a key={href} href={href} onClick={() => setOpen(false)} className="border-b border-line py-3.5 text-base text-fg">
+              <Link key={href} href={href} onClick={() => setOpen(false)} className="border-b border-line py-3.5 text-base text-fg">
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <a href={SITE.signInUrl} className="rounded-md border border-line py-2.5 text-center font-medium">
               Sign in
             </a>
-            <a href="#contact" onClick={() => setOpen(false)} className="rounded-md bg-brand-500 py-2.5 text-center font-semibold text-white">
+            <Link href="/#contact" onClick={() => setOpen(false)} className="rounded-md bg-brand-500 py-2.5 text-center font-semibold text-white">
               Book a demo
-            </a>
+            </Link>
           </div>
         </div>
       )}
