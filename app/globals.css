@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* A traditional white site in Lasan Grow's corporate blue, matching the app and the Lasan People site. */
+@theme {
+  --font-sans: var(--font-inter), "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-fg: #1a1f26;
+  --color-muted: #4f5761;
+  --color-subtle: #6b737d;
+  --color-line: #e4e7eb;
+  --color-soft: #f6f8fa;
+  --color-softer: #fbfcfd;
+
+  --color-brand-50: #eef5fc;
+  --color-brand-100: #d9e9f8;
+  --color-brand-200: #b4d3f1;
+  --color-brand-500: #0f6cbd;
+  --color-brand-600: #0c5ba1;
+  --color-brand-700: #0a4a83;
+  --color-brand-900: #0b2a4a;
+
+  --color-ok: #107c10;
+  --color-ok-soft: #e8f4e8;
+  --color-warn: #8a5a00;
+  --color-warn-soft: #fcf3e3;
+  --color-teal: #00788a;
+  --color-teal-soft: #e3f3f5;
+
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.05), 0 1px 3px rgb(16 24 40 / 0.04);
+  --shadow-lift: 0 12px 32px -12px rgb(11 42 74 / 0.22), 0 2px 6px rgb(11 42 74 / 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand-100);
+}
+
+/* The "Powered by Lasan Labs" signature keeps Lasan's own look. */
+.lasan-signature {
+  font-family: var(--font-space-grotesk), var(--font-sans);
+  letter-spacing: -0.025em;
+  background: linear-gradient(100deg, #3b2a8f 10%, #6843f5 55%, #0891b2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fine grid behind the hero. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(15 108 189 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 108 189 / 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+}
+
+/* The hero eases in once on load. Nothing below it is ever hidden waiting for an animation. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.6s ease-out both;
+  }
+  .rise-late {
+    animation: rise 0.6s 0.15s ease-out both;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(16 124 16 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgb(16 124 16 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(16 124 16 / 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.field {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #cfd4da;
+  background: #fff;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.9375rem;
+  color: var(--color-fg);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.field:focus {
+  border-color: var(--color-brand-500);
+  box-shadow: 0 0 0 3px rgb(15 108 189 / 0.15);
+}
