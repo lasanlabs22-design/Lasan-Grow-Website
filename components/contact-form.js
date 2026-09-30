@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Send } from "lucide-react";
 import { SITE } from "@/lib/site";
@@ -66,9 +67,21 @@ export function ContactForm() {
         </label>
       </div>
 
+      <p className="mt-5 text-xs leading-relaxed text-muted">
+        By sending this request, you agree to our{" "}
+        <Link href="/terms" className="font-medium text-brand-600 underline-offset-2 hover:underline">
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link href="/privacy" className="font-medium text-brand-600 underline-offset-2 hover:underline">
+          Privacy Policy
+        </Link>
+        .
+      </p>
+
       <button
         type="submit"
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-brand-600 sm:w-auto"
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-brand-600 sm:w-auto"
       >
         <Send className="size-4" /> Send request
       </button>
